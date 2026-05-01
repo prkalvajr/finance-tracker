@@ -126,7 +126,7 @@
 
 ---
 
-## Phase 4 — Application: TransactionService ⬜
+## Phase 4 — Application: TransactionService ✅
 
 **Support files (no tests):**
 
@@ -145,23 +145,23 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `Create_WithValidData_ReturnsTransactionDto` | ⬜ |
-| 2 | `Create_WithNegativeAmount_ThrowsValidationException` | ⬜ |
-| 3 | `Create_WithZeroAmount_ThrowsValidationException` | ⬜ |
-| 4 | `Create_WithEmptyTitle_ThrowsValidationException` | ⬜ |
-| 5 | `Create_WithInvalidCategory_ThrowsValidationException` | ⬜ |
-| 6 | `Create_WithNoDate_DefaultsToToday` | ⬜ |
-| 7 | `Update_WithValidData_ReturnsUpdatedDto` | ⬜ |
-| 8 | `Update_WithTransactionBelongingToOtherUser_ThrowsNotFoundException` | ⬜ |
-| 9 | `Update_WithNegativeAmount_ThrowsValidationException` | ⬜ |
-| 10 | `Update_WithInvalidCategory_ThrowsValidationException` | ⬜ |
-| 11 | `GetPaged_ReturnsCorrectPageAndTotalCount` | ⬜ |
-| 12 | `GetPaged_WithCategoryFilter_PassesFilterToRepository` | ⬜ |
-| 13 | `GetPaged_WithDateRange_PassesDateRangeToRepository` | ⬜ |
-| 14 | `GetSummary_ReturnsNetBalanceTotalIncomeTotalExpense` | ⬜ |
-| 15 | `GetSummary_WithNoTransactions_ReturnsZeros` | ⬜ |
-| 16 | `SoftDelete_WithValidId_CallsRepository` | ⬜ |
-| 17 | `SoftDelete_WithTransactionBelongingToOtherUser_ThrowsNotFoundException` | ⬜ |
+| 1 | `Create_WithValidData_ReturnsTransactionDto` | ✅ |
+| 2 | `Create_WithNegativeAmount_ThrowsValidationException` | ✅ |
+| 3 | `Create_WithZeroAmount_ThrowsValidationException` | ✅ |
+| 4 | `Create_WithEmptyTitle_ThrowsValidationException` | ✅ |
+| 5 | `Create_WithInvalidCategory_ThrowsValidationException` | ✅ |
+| 6 | `Create_WithNoDate_DefaultsToToday` | ✅ |
+| 7 | `Update_WithValidData_ReturnsUpdatedDto` | ✅ |
+| 8 | `Update_WithTransactionBelongingToOtherUser_ThrowsNotFoundException` | ✅ |
+| 9 | `Update_WithNegativeAmount_ThrowsValidationException` | ✅ |
+| 10 | `Update_WithInvalidCategory_ThrowsValidationException` | ✅ |
+| 11 | `GetPaged_ReturnsCorrectPageAndTotalCount` | ✅ |
+| 12 | `GetPaged_WithCategoryFilter_PassesFilterToRepository` | ✅ |
+| 13 | `GetPaged_WithDateRange_PassesDateRangeToRepository` | ✅ |
+| 14 | `GetSummary_ReturnsNetBalanceTotalIncomeTotalExpense` | ✅ |
+| 15 | `GetSummary_WithNoTransactions_ReturnsZeros` | ✅ |
+| 16 | `SoftDelete_WithValidId_CallsRepository` | ✅ |
+| 17 | `SoftDelete_WithTransactionBelongingToOtherUser_ThrowsNotFoundException` | ✅ |
 
 **Checkpoint:** 17 tests pass. TransactionService fully covered.
 
@@ -361,7 +361,7 @@
 | 1 | Domain entities + interfaces | ✅ |
 | 2 | Application: AuthService (14 tests) | ✅ |
 | 3 | Application: UserService (8 tests) | ✅ |
-| 4 | Application: TransactionService (17 tests) | ⬜ |
+| 4 | Application: TransactionService (17 tests) | ✅ |
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ⬜ |
 | 6 | Infrastructure: Repositories (23 tests) | ⬜ |
 | 7 | API: AuthController + middleware (8 tests) | ⬜ |
