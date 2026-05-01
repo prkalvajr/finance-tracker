@@ -198,7 +198,7 @@
 
 ---
 
-## Phase 6 — Infrastructure: Repositories ⬜
+## Phase 6 — Infrastructure: Repositories ✅
 
 **Goal:** Implement and integration-test the three ADO.NET repositories against a real PostgreSQL database.
 
@@ -217,39 +217,39 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `CreateAsync_InsertsUserAndReturnsGeneratedId` | ⬜ |
-| 2 | `GetByIdAsync_WithExistingId_ReturnsUser` | ⬜ |
-| 3 | `GetByIdAsync_WithUnknownId_ReturnsNull` | ⬜ |
-| 4 | `GetByEmailAsync_WithExistingEmail_ReturnsUser` | ⬜ |
-| 5 | `GetByEmailAsync_WithUnknownEmail_ReturnsNull` | ⬜ |
-| 6 | `UpdateAsync_PersistsChangedFields` | ⬜ |
+| 1 | `CreateAsync_InsertsUserAndReturnsGeneratedId` | ✅ |
+| 2 | `GetByIdAsync_WithExistingId_ReturnsUser` | ✅ |
+| 3 | `GetByIdAsync_WithUnknownId_ReturnsNull` | ✅ |
+| 4 | `GetByEmailAsync_WithExistingEmail_ReturnsUser` | ✅ |
+| 5 | `GetByEmailAsync_WithUnknownEmail_ReturnsNull` | ✅ |
+| 6 | `UpdateAsync_PersistsChangedFields` | ✅ |
 
 **Test class:** `tests/FinanceTracker.Infrastructure.Tests/Repositories/TransactionRepositoryTests.cs`
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `CreateAsync_InsertsTransactionAndReturnsId` | ⬜ |
-| 2 | `GetByIdAsync_WithExistingId_ReturnsTransaction` | ⬜ |
-| 3 | `GetByIdAsync_WithUnknownId_ReturnsNull` | ⬜ |
-| 4 | `GetPagedAsync_ReturnsPaginatedResults` | ⬜ |
-| 5 | `GetPagedAsync_ExcludesSoftDeletedRecords` | ⬜ |
-| 6 | `GetPagedAsync_FiltersByCategory` | ⬜ |
-| 7 | `GetPagedAsync_FiltersByDateRange` | ⬜ |
-| 8 | `GetPagedAsync_SortsByDateDescendingByDefault` | ⬜ |
-| 9 | `GetPagedAsync_OnlyReturnsTransactionsForRequestedUser` | ⬜ |
-| 10 | `UpdateAsync_PersistsChangedFields` | ⬜ |
-| 11 | `SoftDeleteAsync_SetsDeletedFlag` | ⬜ |
-| 12 | `SoftDeleteAsync_DoesNotPhysicallyRemoveRow` | ⬜ |
-| 13 | `GetSummaryAsync_CalculatesCorrectTotals` | ⬜ |
+| 1 | `CreateAsync_InsertsTransactionAndReturnsId` | ✅ |
+| 2 | `GetByIdAsync_WithExistingId_ReturnsTransaction` | ✅ |
+| 3 | `GetByIdAsync_WithUnknownId_ReturnsNull` | ✅ |
+| 4 | `GetPagedAsync_ReturnsPaginatedResults` | ✅ |
+| 5 | `GetPagedAsync_ExcludesSoftDeletedRecords` | ✅ |
+| 6 | `GetPagedAsync_FiltersByCategory` | ✅ |
+| 7 | `GetPagedAsync_FiltersByDateRange` | ✅ |
+| 8 | `GetPagedAsync_SortsByDateDescendingByDefault` | ✅ |
+| 9 | `GetPagedAsync_OnlyReturnsTransactionsForRequestedUser` | ✅ |
+| 10 | `UpdateAsync_PersistsChangedFields` | ✅ |
+| 11 | `SoftDeleteAsync_SetsDeletedFlag` | ✅ |
+| 12 | `SoftDeleteAsync_DoesNotPhysicallyRemoveRow` | ✅ |
+| 13 | `GetSummaryAsync_CalculatesCorrectTotals` | ✅ |
 
 **Test class:** `tests/FinanceTracker.Infrastructure.Tests/Repositories/RefreshTokenRepositoryTests.cs`
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `CreateAsync_InsertsToken` | ⬜ |
-| 2 | `GetByTokenAsync_WithExistingToken_ReturnsToken` | ⬜ |
-| 3 | `GetByTokenAsync_WithUnknownToken_ReturnsNull` | ⬜ |
-| 4 | `RevokeAsync_SetsRevokedAt` | ⬜ |
+| 1 | `CreateAsync_InsertsToken` | ✅ |
+| 2 | `GetByTokenAsync_WithExistingToken_ReturnsToken` | ✅ |
+| 3 | `GetByTokenAsync_WithUnknownToken_ReturnsNull` | ✅ |
+| 4 | `RevokeAsync_SetsRevokedAt` | ✅ |
 
 **Checkpoint:** 23 tests pass. All repositories covered.
 
@@ -363,7 +363,7 @@
 | 3 | Application: UserService (8 tests) | ✅ |
 | 4 | Application: TransactionService (17 tests) | ✅ |
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ✅ |
-| 6 | Infrastructure: Repositories (23 tests) | ⬜ |
+| 6 | Infrastructure: Repositories (23 tests) | ✅ |
 | 7 | API: AuthController + middleware (8 tests) | ⬜ |
 | 8 | API: UserController (5 tests) | ⬜ |
 | 9 | API: TransactionController (14 tests) | ⬜ |
