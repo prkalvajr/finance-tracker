@@ -98,7 +98,7 @@
 
 ---
 
-## Phase 3 — Application: UserService ⬜
+## Phase 3 — Application: UserService ✅
 
 **Support files (no tests):**
 
@@ -113,14 +113,14 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `GetCurrentUser_WithValidUserId_ReturnsUserDto` | ⬜ |
-| 2 | `GetCurrentUser_WithUnknownUserId_ThrowsNotFoundException` | ⬜ |
-| 3 | `UpdateUser_WithNewName_UpdatesNameOnly` | ⬜ |
-| 4 | `UpdateUser_WithNewEmail_UpdatesEmailOnly` | ⬜ |
-| 5 | `UpdateUser_WithDuplicateEmail_ThrowsConflictException` | ⬜ |
-| 6 | `UpdateUser_WithNewPassword_VerifiesCurrentPasswordAndUpdates` | ⬜ |
-| 7 | `UpdateUser_WithWrongCurrentPassword_ThrowsUnauthorizedException` | ⬜ |
-| 8 | `UpdateUser_WithNewPasswordButNoCurrentPassword_ThrowsValidationException` | ⬜ |
+| 1 | `GetCurrentUser_WithValidUserId_ReturnsUserDto` | ✅ |
+| 2 | `GetCurrentUser_WithUnknownUserId_ThrowsNotFoundException` | ✅ |
+| 3 | `UpdateUser_WithNewName_UpdatesNameOnly` | ✅ |
+| 4 | `UpdateUser_WithNewEmail_UpdatesEmailOnly` | ✅ |
+| 5 | `UpdateUser_WithDuplicateEmail_ThrowsConflictException` | ✅ |
+| 6 | `UpdateUser_WithNewPassword_VerifiesCurrentPasswordAndUpdates` | ✅ |
+| 7 | `UpdateUser_WithWrongCurrentPassword_ThrowsUnauthorizedException` | ✅ |
+| 8 | `UpdateUser_WithNewPasswordButNoCurrentPassword_ThrowsValidationException` | ✅ |
 
 **Checkpoint:** 8 tests pass. UserService fully covered.
 
@@ -360,7 +360,7 @@
 | 0 | Solution restructure | ✅ |
 | 1 | Domain entities + interfaces | ✅ |
 | 2 | Application: AuthService (14 tests) | ✅ |
-| 3 | Application: UserService (8 tests) | ⬜ |
+| 3 | Application: UserService (8 tests) | ✅ |
 | 4 | Application: TransactionService (17 tests) | ⬜ |
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ⬜ |
 | 6 | Infrastructure: Repositories (23 tests) | ⬜ |
