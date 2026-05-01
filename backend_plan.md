@@ -167,7 +167,7 @@
 
 ---
 
-## Phase 5 — Infrastructure: PasswordHasher + JwtService ⬜
+## Phase 5 — Infrastructure: PasswordHasher + JwtService ✅
 
 **Goal:** Implement and unit-test the two stateless infrastructure services (no DB required).
 
@@ -180,19 +180,19 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `Hash_ReturnsDifferentHashEachCall` | ⬜ |
-| 2 | `Verify_WithCorrectPassword_ReturnsTrue` | ⬜ |
-| 3 | `Verify_WithWrongPassword_ReturnsFalse` | ⬜ |
+| 1 | `Hash_ReturnsDifferentHashEachCall` | ✅ |
+| 2 | `Verify_WithCorrectPassword_ReturnsTrue` | ✅ |
+| 3 | `Verify_WithWrongPassword_ReturnsFalse` | ✅ |
 
 **Test class:** `tests/FinanceTracker.Infrastructure.Tests/Services/JwtServiceTests.cs`
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `GenerateTokens_ReturnsNonEmptyAccessToken` | ⬜ |
-| 2 | `GenerateTokens_AccessTokenExpiresIn15Minutes` | ⬜ |
-| 3 | `GenerateTokens_RefreshTokenExpiresIn5Days` | ⬜ |
-| 4 | `GenerateTokens_AccessTokenContainsCorrectUserId` | ⬜ |
-| 5 | `GenerateTokens_AccessTokenContainsCorrectEmail` | ⬜ |
+| 1 | `GenerateTokens_ReturnsNonEmptyAccessToken` | ✅ |
+| 2 | `GenerateTokens_AccessTokenExpiresIn15Minutes` | ✅ |
+| 3 | `GenerateTokens_RefreshTokenExpiresIn5Days` | ✅ |
+| 4 | `GenerateTokens_AccessTokenContainsCorrectUserId` | ✅ |
+| 5 | `GenerateTokens_AccessTokenContainsCorrectEmail` | ✅ |
 
 **Checkpoint:** 8 tests pass. Both services covered.
 
@@ -362,7 +362,7 @@
 | 2 | Application: AuthService (14 tests) | ✅ |
 | 3 | Application: UserService (8 tests) | ✅ |
 | 4 | Application: TransactionService (17 tests) | ✅ |
-| 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ⬜ |
+| 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ✅ |
 | 6 | Infrastructure: Repositories (23 tests) | ⬜ |
 | 7 | API: AuthController + middleware (8 tests) | ⬜ |
 | 8 | API: UserController (5 tests) | ⬜ |
