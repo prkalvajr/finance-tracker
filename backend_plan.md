@@ -36,20 +36,20 @@
 
 ---
 
-## Phase 1 — Domain Layer ⬜
+## Phase 1 — Domain Layer ✅
 
 **Goal:** Define entities and repository interfaces. Pure C#, zero external dependencies. No tests needed.
 
 **Files:**
 
-| File | Responsibility |
-|---|---|
-| `src/FinanceTracker.Domain/Entities/User.cs` | `UserId`, `Name`, `Email`, `PasswordHash` |
-| `src/FinanceTracker.Domain/Entities/Transaction.cs` | `TransactionId`, `UserId`, `Title`, `Amount`, `Category`, `Date`, `Deleted`, `CreatedAt`, `UpdatedAt` |
-| `src/FinanceTracker.Domain/Entities/RefreshToken.cs` | `Id`, `UserId`, `Token`, `ExpiresAt`, `RevokedAt?` |
-| `src/FinanceTracker.Domain/Repositories/IUserRepository.cs` | `GetByIdAsync`, `GetByEmailAsync`, `CreateAsync`, `UpdateAsync` |
-| `src/FinanceTracker.Domain/Repositories/ITransactionRepository.cs` | `GetPagedAsync`, `GetSummaryAsync`, `GetByIdAsync`, `CreateAsync`, `UpdateAsync`, `SoftDeleteAsync` |
-| `src/FinanceTracker.Domain/Repositories/IRefreshTokenRepository.cs` | `CreateAsync`, `GetByTokenAsync`, `RevokeAsync` |
+| File | Responsibility | Done |
+|---|---|---|
+| `src/FinanceTracker.Domain/Entities/User.cs` | `UserId`, `Name`, `Email`, `PasswordHash` | ✅ |
+| `src/FinanceTracker.Domain/Entities/Transaction.cs` | `TransactionId`, `UserId`, `Title`, `Amount`, `Category`, `Date`, `Deleted`, `CreatedAt`, `UpdatedAt` | ✅ |
+| `src/FinanceTracker.Domain/Entities/RefreshToken.cs` | `Id`, `UserId`, `Token`, `ExpiresAt`, `RevokedAt?` | ✅ |
+| `src/FinanceTracker.Domain/Repositories/IUserRepository.cs` | `GetByIdAsync`, `GetByEmailAsync`, `CreateAsync`, `UpdateAsync` | ✅ |
+| `src/FinanceTracker.Domain/Repositories/ITransactionRepository.cs` | `GetPagedAsync`, `GetSummaryAsync`, `GetByIdAsync`, `CreateAsync`, `UpdateAsync`, `SoftDeleteAsync` | ✅ |
+| `src/FinanceTracker.Domain/Repositories/IRefreshTokenRepository.cs` | `CreateAsync`, `GetByTokenAsync`, `RevokeAsync` | ✅ |
 
 **Checkpoint:** Domain compiles with zero NuGet dependencies.
 
@@ -358,7 +358,7 @@
 | Phase | Description | Status |
 |---|---|---|
 | 0 | Solution restructure | ✅ |
-| 1 | Domain entities + interfaces | ⬜ |
+| 1 | Domain entities + interfaces | ✅ |
 | 2 | Application: AuthService (14 tests) | ⬜ |
 | 3 | Application: UserService (8 tests) | ⬜ |
 | 4 | Application: TransactionService (17 tests) | ⬜ |
