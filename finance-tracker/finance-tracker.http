@@ -1,0 +1,6 @@
+@finance_tracker_HostAddress = http://localhost:5283
+
+GET {{finance_tracker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
