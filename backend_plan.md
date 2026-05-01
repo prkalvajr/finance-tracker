@@ -55,7 +55,7 @@
 
 ---
 
-## Phase 2 — Application: AuthService ⬜
+## Phase 2 — Application: AuthService ✅
 
 **Goal:** Registration, login, token refresh, and logout.
 
@@ -79,20 +79,20 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `Register_WithValidData_CreatesUserAndReturnsTokens` | ⬜ |
-| 2 | `Register_WithDuplicateEmail_ThrowsConflictException` | ⬜ |
-| 3 | `Register_WithEmptyEmail_ThrowsValidationException` | ⬜ |
-| 4 | `Register_WithEmptyName_ThrowsValidationException` | ⬜ |
-| 5 | `Register_WithEmptyPassword_ThrowsValidationException` | ⬜ |
-| 6 | `Login_WithValidCredentials_ReturnsTokens` | ⬜ |
-| 7 | `Login_WithUnknownEmail_ThrowsUnauthorizedException` | ⬜ |
-| 8 | `Login_WithWrongPassword_ThrowsUnauthorizedException` | ⬜ |
-| 9 | `Refresh_WithValidToken_RevokesOldAndReturnsNewTokens` | ⬜ |
-| 10 | `Refresh_WithExpiredToken_ThrowsUnauthorizedException` | ⬜ |
-| 11 | `Refresh_WithRevokedToken_ThrowsUnauthorizedException` | ⬜ |
-| 12 | `Refresh_WithUnknownToken_ThrowsUnauthorizedException` | ⬜ |
-| 13 | `Logout_WithValidToken_RevokesToken` | ⬜ |
-| 14 | `Logout_WithUnknownToken_ThrowsUnauthorizedException` | ⬜ |
+| 1 | `Register_WithValidData_CreatesUserAndReturnsTokens` | ✅ |
+| 2 | `Register_WithDuplicateEmail_ThrowsConflictException` | ✅ |
+| 3 | `Register_WithEmptyEmail_ThrowsValidationException` | ✅ |
+| 4 | `Register_WithEmptyName_ThrowsValidationException` | ✅ |
+| 5 | `Register_WithEmptyPassword_ThrowsValidationException` | ✅ |
+| 6 | `Login_WithValidCredentials_ReturnsTokens` | ✅ |
+| 7 | `Login_WithUnknownEmail_ThrowsUnauthorizedException` | ✅ |
+| 8 | `Login_WithWrongPassword_ThrowsUnauthorizedException` | ✅ |
+| 9 | `Refresh_WithValidToken_RevokesOldAndReturnsNewTokens` | ✅ |
+| 10 | `Refresh_WithExpiredToken_ThrowsUnauthorizedException` | ✅ |
+| 11 | `Refresh_WithRevokedToken_ThrowsUnauthorizedException` | ✅ |
+| 12 | `Refresh_WithUnknownToken_ThrowsUnauthorizedException` | ✅ |
+| 13 | `Logout_WithValidToken_RevokesToken` | ✅ |
+| 14 | `Logout_WithUnknownToken_ThrowsUnauthorizedException` | ✅ |
 
 **Checkpoint:** 14 tests pass. AuthService fully covered.
 
@@ -359,7 +359,7 @@
 |---|---|---|
 | 0 | Solution restructure | ✅ |
 | 1 | Domain entities + interfaces | ✅ |
-| 2 | Application: AuthService (14 tests) | ⬜ |
+| 2 | Application: AuthService (14 tests) | ✅ |
 | 3 | Application: UserService (8 tests) | ⬜ |
 | 4 | Application: TransactionService (17 tests) | ⬜ |
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ⬜ |
