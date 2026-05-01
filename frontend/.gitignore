@@ -1,0 +1,15 @@
+# Angular build output
+dist/
+.angular/
+
+# Dependencies
+node_modules/
+
+# MSBuild / Visual Studio
+obj/
+*.user
+
+# Environment files
+.env
+.env.*
+!.env.example
