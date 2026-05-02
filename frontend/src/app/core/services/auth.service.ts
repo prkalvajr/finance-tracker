@@ -33,7 +33,10 @@ export class AuthService {
   async bootstrap(): Promise<void> {
     try {
       const user = await firstValueFrom(
-        this.http.get<UserDto>(`${this.apiBase}/user`, { withCredentials: true })
+        this.http.get<UserDto>(`${this.apiBase}/user`, {
+          withCredentials: true,
+          context: this.skipRefreshContext()
+        })
       );
       this._currentUser.set(user);
     } catch {

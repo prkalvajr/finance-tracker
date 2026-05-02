@@ -1,0 +1,41 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 520px;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 4px;
+}
+
+.section-hint {
+  font-size: 0.8125rem;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 12px;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

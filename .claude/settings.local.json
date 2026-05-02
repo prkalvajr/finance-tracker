@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\\\\frontend\\\\src\\\\app\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "Bash(npm test *)"
+    ]
+  }
+}
