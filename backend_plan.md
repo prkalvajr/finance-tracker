@@ -286,7 +286,7 @@
 
 ---
 
-## Phase 8 — API: UserController ⬜
+## Phase 8 — API: UserController ✅
 
 | File | Responsibility |
 |---|---|
@@ -296,17 +296,17 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `GetUser_Authenticated_Returns200WithUserDto` | ⬜ |
-| 2 | `GetUser_Unauthenticated_Returns401` | ⬜ |
-| 3 | `UpdateUser_WithValidData_Returns200WithUpdatedDto` | ⬜ |
-| 4 | `UpdateUser_WithDuplicateEmail_Returns409` | ⬜ |
-| 5 | `UpdateUser_Unauthenticated_Returns401` | ⬜ |
+| 1 | `GetUser_Authenticated_Returns200WithUserDto` | ✅ |
+| 2 | `GetUser_Unauthenticated_Returns401` | ✅ |
+| 3 | `UpdateUser_WithValidData_Returns200WithUpdatedDto` | ✅ |
+| 4 | `UpdateUser_WithDuplicateEmail_Returns409` | ✅ |
+| 5 | `UpdateUser_Unauthenticated_Returns401` | ✅ |
 
 **Checkpoint:** 5 tests pass. User endpoints covered.
 
 ---
 
-## Phase 9 — API: TransactionController ⬜
+## Phase 9 — API: TransactionController ✅
 
 | File | Responsibility |
 |---|---|
@@ -316,20 +316,20 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `Create_WithValidData_Returns201WithDto` | ⬜ |
-| 2 | `Create_WithNegativeAmount_Returns400` | ⬜ |
-| 3 | `Create_Unauthenticated_Returns401` | ⬜ |
-| 4 | `Update_WithValidData_Returns200WithDto` | ⬜ |
-| 5 | `Update_WithOtherUsersTransaction_Returns404` | ⬜ |
-| 6 | `Update_Unauthenticated_Returns401` | ⬜ |
-| 7 | `GetTransactions_Returns200WithPagedResult` | ⬜ |
-| 8 | `GetTransactions_WithFilters_PassesFiltersToService` | ⬜ |
-| 9 | `GetTransactions_Unauthenticated_Returns401` | ⬜ |
-| 10 | `Delete_WithValidId_Returns204` | ⬜ |
-| 11 | `Delete_WithOtherUsersTransaction_Returns404` | ⬜ |
-| 12 | `Delete_Unauthenticated_Returns401` | ⬜ |
-| 13 | `GetSummary_Returns200WithSummaryDto` | ⬜ |
-| 14 | `GetSummary_Unauthenticated_Returns401` | ⬜ |
+| 1 | `Create_WithValidData_Returns201WithDto` | ✅ |
+| 2 | `Create_WithNegativeAmount_Returns400` | ✅ |
+| 3 | `Create_Unauthenticated_Returns401` | ✅ |
+| 4 | `Update_WithValidData_Returns200WithDto` | ✅ |
+| 5 | `Update_WithOtherUsersTransaction_Returns404` | ✅ |
+| 6 | `Update_Unauthenticated_Returns401` | ✅ |
+| 7 | `GetTransactions_Returns200WithPagedResult` | ✅ |
+| 8 | `GetTransactions_WithFilters_PassesFiltersToService` | ✅ |
+| 9 | `GetTransactions_Unauthenticated_Returns401` | ✅ |
+| 10 | `Delete_WithValidId_Returns204` | ✅ |
+| 11 | `Delete_WithOtherUsersTransaction_Returns404` | ✅ |
+| 12 | `Delete_Unauthenticated_Returns401` | ✅ |
+| 13 | `GetSummary_Returns200WithSummaryDto` | ✅ |
+| 14 | `GetSummary_Unauthenticated_Returns401` | ✅ |
 
 **Checkpoint:** 14 tests pass. All transaction endpoints covered.
 
@@ -365,8 +365,8 @@
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ✅ |
 | 6 | Infrastructure: Repositories (23 tests) | ✅ |
 | 7 | API: AuthController + middleware (8 tests) | ✅ |
-| 8 | API: UserController (5 tests) | ⬜ |
-| 9 | API: TransactionController (14 tests) | ⬜ |
+| 8 | API: UserController (5 tests) | ✅ |
+| 9 | API: TransactionController (14 tests) | ✅ |
 | 10 | DI wiring + Program.cs | ⬜ |
 
 **Total: ~97 test cases across 8 test classes.**
