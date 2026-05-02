@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="brand-toolbar">
+  <a routerLink="/home" class="brand">Finance Tracker</a>
+  <span class="spacer"></span>
+  @if (currentUser(); as user) {
+    <a mat-button routerLink="/profile">Profile</a>
+    <button mat-button (click)="logout()">Logout</button>
+  }
+</mat-toolbar>
+
+<main class="page-shell">
+  <router-outlet />
+</main>

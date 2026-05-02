@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@use './styles/theme' as *;
+@use './styles/tokens' as *;
+
+@include mat.core();
+@include mat.all-component-themes($app-theme);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Manrope, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: $color-surface;
+  color: $color-text-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Token-styled snack bar variants (consumed by NotificationService panelClass).
+.toast-success {
+  --mdc-snackbar-container-color: #{$color-emerald-500};
+  --mdc-snackbar-supporting-text-color: #{$color-white};
+  --mat-snack-bar-button-color: #{$color-white};
+}
+
+.toast-error {
+  --mdc-snackbar-container-color: #{$color-error};
+  --mdc-snackbar-supporting-text-color: #{$color-white};
+  --mat-snack-bar-button-color: #{$color-white};
+}
+
+.toast-info {
+  --mdc-snackbar-container-color: #{$color-slate-500};
+  --mdc-snackbar-supporting-text-color: #{$color-white};
+  --mat-snack-bar-button-color: #{$color-white};
+}

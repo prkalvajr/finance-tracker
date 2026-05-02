@@ -1,0 +1,203 @@
+@use '@angular/material' as mat;
+@use './tokens' as *;
+
+// Custom Emerald-seeded palette (M3) built from #064E3B.
+// Keys 0/10/20/...100 are required by Angular Material's theming.
+$emerald-primary-palette: (
+  0: #000000,
+  10: #001f15,
+  20: #003424,
+  25: #003f2c,
+  30: #064e3b,
+  35: #0a5a44,
+  40: #0e6750,
+  50: #128068,
+  60: #169a81,
+  70: #1bb59b,
+  80: #44d3b8,
+  90: #76e8d3,
+  95: #a8f3e2,
+  98: #e6fbf3,
+  99: #f3fef9,
+  100: #ffffff,
+  secondary: (
+    0: #000000,
+    10: #001f15,
+    20: #003424,
+    25: #003f2c,
+    30: #064e3b,
+    35: #0a5a44,
+    40: #0e6750,
+    50: #128068,
+    60: #169a81,
+    70: #1bb59b,
+    80: #44d3b8,
+    90: #76e8d3,
+    95: #a8f3e2,
+    98: #e6fbf3,
+    99: #f3fef9,
+    100: #ffffff
+  ),
+  neutral: (
+    0: #000000,
+    10: #0f172a,
+    20: #1e293b,
+    25: #243042,
+    30: #2c3a4f,
+    35: #354459,
+    40: #3e4d63,
+    50: #4f5d72,
+    60: #64748b,
+    70: #7e8aa3,
+    80: #98a3bc,
+    90: #cbd5e1,
+    95: #e2e8f0,
+    98: #f1f5f9,
+    99: #f8fafc,
+    100: #ffffff
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #0f172a,
+    20: #1e293b,
+    25: #243042,
+    30: #2c3a4f,
+    35: #354459,
+    40: #3e4d63,
+    50: #4f5d72,
+    60: #64748b,
+    70: #7e8aa3,
+    80: #98a3bc,
+    90: #cbd5e1,
+    95: #e2e8f0,
+    98: #f1f5f9,
+    99: #f8fafc,
+    100: #ffffff
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff
+  )
+);
+
+$emerald-tertiary-palette: (
+  0: #000000,
+  10: #002115,
+  20: #003824,
+  25: #00452d,
+  30: #005236,
+  35: #00603f,
+  40: #006e49,
+  50: #008a5d,
+  60: #10b981,
+  70: #38d9a0,
+  80: #65e6b6,
+  90: #a4f1d4,
+  95: #d2f8e9,
+  98: #ecfdf5,
+  99: #f6fef9,
+  100: #ffffff,
+  secondary: (
+    0: #000000,
+    10: #002115,
+    20: #003824,
+    25: #00452d,
+    30: #005236,
+    35: #00603f,
+    40: #006e49,
+    50: #008a5d,
+    60: #10b981,
+    70: #38d9a0,
+    80: #65e6b6,
+    90: #a4f1d4,
+    95: #d2f8e9,
+    98: #ecfdf5,
+    99: #f6fef9,
+    100: #ffffff
+  ),
+  neutral: (
+    0: #000000,
+    10: #0f172a,
+    20: #1e293b,
+    25: #243042,
+    30: #2c3a4f,
+    35: #354459,
+    40: #3e4d63,
+    50: #4f5d72,
+    60: #64748b,
+    70: #7e8aa3,
+    80: #98a3bc,
+    90: #cbd5e1,
+    95: #e2e8f0,
+    98: #f1f5f9,
+    99: #f8fafc,
+    100: #ffffff
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #0f172a,
+    20: #1e293b,
+    25: #243042,
+    30: #2c3a4f,
+    35: #354459,
+    40: #3e4d63,
+    50: #4f5d72,
+    60: #64748b,
+    70: #7e8aa3,
+    80: #98a3bc,
+    90: #cbd5e1,
+    95: #e2e8f0,
+    98: #f1f5f9,
+    99: #f8fafc,
+    100: #ffffff
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff
+  )
+);
+
+$app-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $emerald-primary-palette,
+      tertiary: $emerald-tertiary-palette
+    ),
+    typography: (
+      plain-family: 'Manrope, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      brand-family: 'Manrope, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+    ),
+    density: (
+      scale: 0
+    )
+  )
+);

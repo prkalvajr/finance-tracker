@@ -1,0 +1,30 @@
+@use '../../../styles/tokens' as *;
+
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3;
+  background-color: $color-surface;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: $space-4;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  background-color: $color-surface-card;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.brand {
+  margin: 0 0 $space-1 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: $color-emerald-900;
+  font-size: 24px;
+}

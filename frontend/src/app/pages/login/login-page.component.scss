@@ -1,0 +1,44 @@
+@use '../../../styles/tokens' as *;
+
+.title {
+  margin: 0 0 $space-1 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: $color-text-primary;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.field {
+  width: 100%;
+}
+
+.submit {
+  margin-top: $space-1;
+}
+
+.form-error {
+  color: $color-error;
+  margin: 0;
+  font-size: 13px;
+}
+
+.alt {
+  margin: $space-1 0 0 0;
+  font-size: 14px;
+  color: $color-text-muted;
+
+  a {
+    color: $color-emerald-700;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

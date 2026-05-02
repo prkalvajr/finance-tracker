@@ -1,0 +1,48 @@
+// Evergreen design tokens — palette, spacing, radius, shadows.
+// Inspiration only: visual scale; layout/feature decisions live in components.
+
+// ---------- Color tokens ----------
+// Brand (Emerald)
+$color-emerald-900: #064e3b; // primary seed
+$color-emerald-700: #047857;
+$color-emerald-500: #10b981; // tertiary seed / positive accent
+$color-emerald-100: #d1fae5;
+
+// Neutrals (Slate)
+$color-slate-900: #0f172a;
+$color-slate-700: #334155;
+$color-slate-500: #64748b;
+$color-slate-300: #cbd5e1;
+$color-slate-200: #e2e8f0;
+$color-slate-100: #f1f5f9;
+$color-slate-50: #f8fafc;
+$color-white: #ffffff;
+
+// Semantic
+$color-error: #dc2626; // Red 600 — destructive / expense
+$color-warn: #d97706;
+$color-info: #0ea5e9;
+
+// Surfaces
+$color-surface: $color-slate-50;
+$color-surface-card: $color-white;
+$color-text-primary: $color-slate-900;
+$color-text-muted: $color-slate-500;
+$color-border: $color-slate-200;
+
+// ---------- Spacing scale ----------
+$space-1: 8px;
+$space-2: 16px;
+$space-3: 24px;
+$space-4: 32px;
+$space-5: 48px;
+
+// ---------- Radius scale ----------
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// ---------- Shadows ----------
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.10);

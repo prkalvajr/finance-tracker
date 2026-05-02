@@ -1,0 +1,63 @@
+<h2 class="title">Create your account</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <mat-form-field appearance="outline" class="field">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" autocomplete="name" />
+    @if (form.controls.name.touched && form.controls.name.errors) {
+      @if (form.controls.name.errors['required']) {
+        <mat-error>Name is required.</mat-error>
+      } @else if (form.controls.name.errors['maxlength']) {
+        <mat-error>Name must be 200 characters or fewer.</mat-error>
+      } @else if (form.controls.name.errors['server']) {
+        <mat-error>{{ form.controls.name.errors['server'] }}</mat-error>
+      }
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" autocomplete="email" />
+    @if (form.controls.email.touched && form.controls.email.errors) {
+      @if (form.controls.email.errors['required']) {
+        <mat-error>Email is required.</mat-error>
+      } @else if (form.controls.email.errors['email']) {
+        <mat-error>Enter a valid email address.</mat-error>
+      } @else if (form.controls.email.errors['server']) {
+        <mat-error>{{ form.controls.email.errors['server'] }}</mat-error>
+      }
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" autocomplete="new-password" />
+    @if (form.controls.password.touched && form.controls.password.errors) {
+      @if (form.controls.password.errors['required']) {
+        <mat-error>Password is required.</mat-error>
+      } @else if (form.controls.password.errors['minlength']) {
+        <mat-error>Password must be at least 8 characters.</mat-error>
+      } @else if (form.controls.password.errors['server']) {
+        <mat-error>{{ form.controls.password.errors['server'] }}</mat-error>
+      }
+    }
+  </mat-form-field>
+
+  @if (form.errors?.['server']) {
+    <p class="form-error">{{ form.errors!['server'] }}</p>
+  }
+
+  <button
+    mat-flat-button
+    color="primary"
+    type="submit"
+    class="submit"
+    [disabled]="submitting()"
+  >
+    {{ submitting() ? 'Creating…' : 'Create account' }}
+  </button>
+</form>
+
+<p class="alt">
+  Already have an account? <a routerLink="/login">Sign in</a>
+</p>
