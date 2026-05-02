@@ -1,0 +1,14 @@
+{
+  "name": "finance-tracker-dev",
+  "private": true,
+  "scripts": {
+    "setup": "npm install && npm --prefix frontend install",
+    "dev": "npm run db:start && concurrently -k -n API,WEB -c cyan,magenta \"dotnet run --project src/FinanceTracker.Api --launch-profile http\" \"npm --prefix frontend start\"",
+    "db:start": "docker compose up -d db && wait-on tcp:127.0.0.1:5433",
+    "db:stop": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "wait-on": "^8.0.4"
+  }
+}
