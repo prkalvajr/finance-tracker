@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use './styles/theme' as *;
 @use './styles/tokens' as *;
+@import '@angular/cdk/overlay-prebuilt.css';
 
 @include mat.core();
 @include mat.all-component-themes($app-theme);
@@ -11,12 +12,42 @@ body {
   margin: 0;
 }
 
+html {
+  --mat-select-panel-background-color: #{$color-surface-card};
+  --mat-option-label-text-color: #{$color-text-primary};
+  --mat-option-selected-state-label-text-color: #{$color-emerald-900};
+  --mat-option-selected-state-layer-color: #{$color-slate-100};
+  --mat-option-hover-state-layer-color: #{$color-slate-100};
+  --mat-option-focus-state-layer-color: #{$color-slate-100};
+}
+
 body {
   font-family: Manrope, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: $color-surface;
   color: $color-text-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mat-icon {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
 
 // Token-styled snack bar variants (consumed by NotificationService panelClass).
@@ -45,4 +76,78 @@ body {
     border-radius: $radius-sm;
     box-shadow: $shadow-md;
   }
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  z-index: 3001;
+}
+
+.cdk-overlay-backdrop,
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 3000;
+}
+
+.cdk-overlay-container .app-select-overlay-pane {
+  z-index: 3002;
+}
+
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel,
+.cdk-overlay-container .mat-mdc-select-panel {
+  --mat-select-panel-background-color: #{$color-surface-card};
+  --mat-option-label-text-color: #{$color-text-primary};
+  --mat-option-selected-state-label-text-color: #{$color-emerald-900};
+  --mat-option-selected-state-layer-color: #{$color-slate-100};
+  --mat-option-hover-state-layer-color: #{$color-slate-100};
+  --mat-option-focus-state-layer-color: #{$color-slate-100};
+  position: relative;
+  isolation: isolate;
+  background: $color-surface-card !important;
+  background-color: $color-surface-card !important;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-lg;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel::before,
+.cdk-overlay-container .mat-mdc-select-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: $color-surface-card;
+}
+
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel .mat-mdc-option,
+.cdk-overlay-container .mat-mdc-select-panel .mat-mdc-option {
+  background: $color-surface-card !important;
+  background-color: $color-surface-card !important;
+  background-image: linear-gradient($color-surface-card, $color-surface-card) !important;
+}
+
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text,
+.cdk-overlay-container .mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text {
+  position: relative;
+  z-index: 2;
+}
+
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel .mat-mdc-option:hover,
+.cdk-overlay-container .app-select-overlay-pane .mat-mdc-select-panel .mat-mdc-option.mdc-list-item--selected,
+.cdk-overlay-container .mat-mdc-select-panel .mat-mdc-option:hover,
+.cdk-overlay-container .mat-mdc-select-panel .mat-mdc-option.mdc-list-item--selected {
+  background: $color-slate-100 !important;
+  background-color: $color-slate-100 !important;
+  background-image: linear-gradient($color-slate-100, $color-slate-100) !important;
 }

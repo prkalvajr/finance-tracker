@@ -60,11 +60,10 @@ export class TransactionsService {
     this.loading.set(true);
     try {
       const created = await firstValueFrom(
-        this.http.post<TransactionDto>(`${this.apiBase}/transactions`, req, {
+        this.http.post<TransactionDto>(`${this.apiBase}/transaction`, req, {
           withCredentials: true
         })
       );
-      await this.getPaged({ page: 1, pageSize: 10 });
       return created;
     } finally {
       this.loading.set(false);
@@ -76,12 +75,11 @@ export class TransactionsService {
     try {
       const updated = await firstValueFrom(
         this.http.put<TransactionDto>(
-          `${this.apiBase}/transactions/${req.transactionId}`,
+          `${this.apiBase}/transaction`,
           req,
           { withCredentials: true }
         )
       );
-      await this.getPaged({ page: 1, pageSize: 10 });
       return updated;
     } finally {
       this.loading.set(false);
@@ -91,12 +89,13 @@ export class TransactionsService {
   async delete(id: number): Promise<void> {
     this.loading.set(true);
     try {
+      const params = new HttpParams().set('id', String(id));
       await firstValueFrom(
-        this.http.delete<void>(`${this.apiBase}/transactions/${id}`, {
+        this.http.delete<void>(`${this.apiBase}/transaction`, {
+          params,
           withCredentials: true
         })
       );
-      await this.getPaged({ page: 1, pageSize: 10 });
     } finally {
       this.loading.set(false);
     }

@@ -85,67 +85,46 @@ describe('TransactionsService', () => {
     expect(service.summary()).toEqual(summary);
   });
 
-  it('3: create() POSTs payload and refreshes list', async () => {
+  it('3: create() POSTs payload without refreshing list', async () => {
     const created = makeTransaction({ transactionId: 42, title: 'Salary', category: 'income', amount: 3000 });
-    const refreshed = makePagedResult([created]);
 
     const promise = service.create({ title: 'Salary', amount: 3000, category: 'income' });
 
-    const postReq = httpMock.expectOne(`${API}/transactions`);
+    const postReq = httpMock.expectOne(`${API}/transaction`);
     expect(postReq.request.method).toBe('POST');
     expect(postReq.request.body).toEqual({ title: 'Salary', amount: 3000, category: 'income' });
     postReq.flush(created);
 
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const getReq = httpMock.expectOne(r => r.url === `${API}/transactions`);
-    expect(getReq.request.method).toBe('GET');
-    getReq.flush(refreshed);
-
     const result = await promise;
     expect(result).toEqual(created);
-    expect(service.transactions()).toEqual(refreshed.items);
+    httpMock.expectNone(r => r.url === `${API}/transactions`);
   });
 
-  it('4: update() PUTs payload and refreshes list', async () => {
+  it('4: update() PUTs payload without refreshing list', async () => {
     const updated = makeTransaction({ title: 'Updated', amount: 99 });
-    const refreshed = makePagedResult([updated]);
 
     const promise = service.update({ transactionId: 1, title: 'Updated', amount: 99, category: 'expense' });
 
-    const putReq = httpMock.expectOne(`${API}/transactions/1`);
+    const putReq = httpMock.expectOne(`${API}/transaction`);
     expect(putReq.request.method).toBe('PUT');
+    expect(putReq.request.body).toEqual({ transactionId: 1, title: 'Updated', amount: 99, category: 'expense' });
     putReq.flush(updated);
-
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const getReq = httpMock.expectOne(r => r.url === `${API}/transactions`);
-    getReq.flush(refreshed);
 
     const result = await promise;
     expect(result).toEqual(updated);
-    expect(service.transactions()).toEqual(refreshed.items);
+    httpMock.expectNone(r => r.url === `${API}/transactions`);
   });
 
-  it('5: delete() DELETEs id and refreshes list', async () => {
-    const refreshed = makePagedResult([]);
-
+  it('5: delete() DELETEs id without refreshing list', async () => {
     const promise = service.delete(7);
 
-    const deleteReq = httpMock.expectOne(`${API}/transactions/7`);
+    const deleteReq = httpMock.expectOne(r => r.url === `${API}/transaction`);
     expect(deleteReq.request.method).toBe('DELETE');
+    expect(deleteReq.request.params.get('id')).toBe('7');
     deleteReq.flush(null);
 
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const getReq = httpMock.expectOne(r => r.url === `${API}/transactions`);
-    getReq.flush(refreshed);
-
     await promise;
-    expect(service.transactions()).toEqual([]);
+    httpMock.expectNone(r => r.url === `${API}/transactions`);
   });
 
   it('6: loading signal toggles around requests', async () => {

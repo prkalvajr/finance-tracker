@@ -16,6 +16,13 @@ export function formatCurrency(amount: number): string {
 
 export function formatIsoDate(iso: string): string {
   // Accepts both DateOnly ("2026-04-30") and full ISO datetimes.
+  const dateOnly = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (dateOnly) {
+    const [, yyyy, mm, dd] = dateOnly;
+    const parsedDateOnly = new Date(Number(yyyy), Number(mm) - 1, Number(dd));
+    return DATE_FORMAT.format(parsedDateOnly);
+  }
+
   const parsed = new Date(iso);
   if (Number.isNaN(parsed.getTime())) {
     return iso;

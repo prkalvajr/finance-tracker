@@ -74,6 +74,8 @@
 // ── Filter bar ────────────────────────────────────────────────────────────────
 
 .filter-bar {
+  position: relative;
+  z-index: 20;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -81,6 +83,8 @@
 }
 
 .filter-field {
+  position: relative;
+  z-index: 21;
   width: 180px;
 }
 

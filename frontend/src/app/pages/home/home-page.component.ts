@@ -9,7 +9,13 @@ import {
   signal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +32,57 @@ import { NotificationService } from '../../core/services/notification.service';
 import { TransactionCategory, TransactionDto } from '../../models/transaction.models';
 import { formatCurrency, formatIsoDate } from '../../core/utils/format';
 import { TransactionModalComponent } from './transaction-modal/transaction-modal.component';
+
+function isValidDateOnly(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const [yyyy, mm, dd] = value.split('-').map(Number);
+  const parsed = new Date(yyyy, mm - 1, dd);
+  return parsed.getFullYear() === yyyy
+    && parsed.getMonth() === mm - 1
+    && parsed.getDate() === dd;
+}
+
+function mergeControlError(control: AbstractControl, key: string, enabled: boolean): void {
+  const current = control.errors ?? {};
+  if (enabled) {
+    control.setErrors({ ...current, [key]: true });
+    return;
+  }
+
+  if (!(key in current)) {
+    return;
+  }
+
+  const { [key]: _removed, ...rest } = current;
+  control.setErrors(Object.keys(rest).length ? rest : null);
+}
+
+function dateRangeValidator(): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const dateFrom = group.get('dateFrom')?.value as string;
+    const dateToControl = group.get('dateTo');
+    const dateTo = dateToControl?.value as string;
+
+    if (!dateToControl) {
+      return null;
+    }
+
+    const toInvalid = !!dateTo && !isValidDateOnly(dateTo);
+    const rangeInvalid = !!dateFrom
+      && !!dateTo
+      && isValidDateOnly(dateFrom)
+      && isValidDateOnly(dateTo)
+      && dateTo < dateFrom;
+
+    mergeControlError(dateToControl, 'invalidDate', toInvalid);
+    mergeControlError(dateToControl, 'dateBeforeFrom', rangeInvalid);
+
+    return toInvalid || rangeInvalid ? { invalidDateRange: true } : null;
+  };
+}
 
 @Component({
   selector: 'app-home-page',
@@ -59,7 +116,7 @@ export class HomePageComponent implements OnInit {
     category: ['' as TransactionCategory | ''],
     dateFrom: [''],
     dateTo: ['']
-  });
+  }, { validators: dateRangeValidator() });
 
   readonly columns = signal<GridColumn<TransactionDto>[]>([
     { key: 'title',    label: 'Title',    sortable: true },
@@ -99,6 +156,11 @@ export class HomePageComponent implements OnInit {
   }
 
   applyFilters(): void {
+    if (this.filterForm.invalid) {
+      this.filterForm.markAllAsTouched();
+      return;
+    }
+
     const { category, dateFrom, dateTo } = this.filterForm.getRawValue();
     this.grid.applyFilters({
       category: category || null,
@@ -148,7 +210,6 @@ export class HomePageComponent implements OnInit {
     ref.afterClosed().subscribe(async saved => {
       if (!saved) return;
       this.grid.refresh();
-      await this.txService.getSummary();
     });
   }
 }

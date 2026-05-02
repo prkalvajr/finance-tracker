@@ -1,10 +1,35 @@
-<mat-toolbar color="primary" class="brand-toolbar">
-  <a routerLink="/home" class="brand">Finance Tracker</a>
-  <span class="spacer"></span>
-  @if (currentUser(); as user) {
-    <a mat-button routerLink="/profile">Profile</a>
-    <button mat-button (click)="logout()">Logout</button>
-  }
+<mat-toolbar class="brand-toolbar">
+  <div class="toolbar-inner">
+    <a routerLink="/home" class="brand" aria-label="Finance Tracker home">
+      <span class="brand-mark">FT</span>
+      <span class="brand-text">Finance Tracker</span>
+    </a>
+
+    @if (currentUser()) {
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a
+          mat-button
+          routerLink="/home"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </a>
+        <a
+          mat-button
+          routerLink="/profile"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Profile
+        </a>
+      </nav>
+
+      <button mat-stroked-button class="logout-button" type="button" (click)="logout()">
+        Logout
+      </button>
+    }
+  </div>
 </mat-toolbar>
 
 <main class="page-shell">

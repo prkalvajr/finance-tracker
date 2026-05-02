@@ -1,18 +1,78 @@
 @use '../../../styles/tokens' as *;
 
 .brand-toolbar {
-  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 64px;
+  background: linear-gradient(90deg, $color-emerald-900, $color-emerald-700);
+  color: $color-white;
+  box-shadow: $shadow-md;
+  padding: 0 $space-3;
+}
+
+.toolbar-inner {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
   color: inherit;
   text-decoration: none;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.brand-text {
+  font-size: 1.05rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+
+  a {
+    color: rgba(255, 255, 255, 0.86);
+    border-radius: $radius-sm;
+  }
+
+  a.active-link,
+  a:hover {
+    color: $color-white;
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.logout-button {
+  color: $color-white;
+  border-color: rgba(255, 255, 255, 0.45);
+  border-radius: $radius-sm;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
 }
 
 .page-shell {
@@ -21,4 +81,28 @@
   padding: $space-4 $space-3;
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .brand-toolbar {
+    min-height: auto;
+    padding: $space-1 $space-2;
+  }
+
+  .toolbar-inner {
+    flex-wrap: wrap;
+    gap: $space-1;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .nav-links {
+    margin-left: 0;
+  }
+
+  .logout-button {
+    margin-left: auto;
+  }
 }

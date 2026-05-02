@@ -4,7 +4,9 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\" -Force)",
       "Bash(Select-Object Name, PSIsContainer)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\\\\frontend\\\\src\\\\app\" -Recurse -File | ForEach-Object { $_.FullName })",
-      "Bash(npm test *)"
+      "Bash(npm test *)",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\\\\frontend\\\\src\\\\app\" | Where-Object { -not $_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(dir \"C:\\\\Users\\\\Kalva\\\\Documents\\\\workdir\\\\finance-tracker\\\\frontend\\\\src\\\\app\" -Recurse -File | ForEach-Object { $_.FullName })"
     ]
   }
 }
