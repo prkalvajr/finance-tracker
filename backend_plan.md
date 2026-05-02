@@ -335,7 +335,7 @@
 
 ---
 
-## Phase 10 — DI Wiring + Program.cs ⬜
+## Phase 10 — DI Wiring + Program.cs ✅
 
 **Goal:** Wire all registrations, middleware, and startup logic. No new tests — controller tests via `WebApplicationFactory` already exercise the DI graph.
 
@@ -367,6 +367,6 @@
 | 7 | API: AuthController + middleware (8 tests) | ✅ |
 | 8 | API: UserController (5 tests) | ✅ |
 | 9 | API: TransactionController (14 tests) | ✅ |
-| 10 | DI wiring + Program.cs | ⬜ |
+| 10 | DI wiring + Program.cs | ✅ |
 
 **Total: ~97 test cases across 8 test classes.**
