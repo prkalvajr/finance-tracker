@@ -1,0 +1,100 @@
+@use '../../../styles/tokens' as t;
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+  padding: t.$space-3;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// ── Summary cards ─────────────────────────────────────────────────────────────
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: t.$space-2;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-card {
+  border-radius: t.$radius-md;
+  box-shadow: t.$shadow-sm;
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: t.$space-2;
+  }
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: t.$color-text-muted;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: t.$color-text-primary;
+
+  &--income  { color: t.$color-emerald-500; }
+  &--expense { color: t.$color-error; }
+}
+
+// ── Transactions section ──────────────────────────────────────────────────────
+
+.transactions-section {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.transactions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.transactions-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: t.$color-text-primary;
+}
+
+// ── Filter bar ────────────────────────────────────────────────────────────────
+
+.filter-bar {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: t.$space-1;
+}
+
+.filter-field {
+  width: 180px;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: t.$space-1;
+  padding-top: 4px;
+}
+
+// ── Row action buttons ────────────────────────────────────────────────────────
+
+.row-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}

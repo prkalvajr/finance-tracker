@@ -1,0 +1,16 @@
+@use '../../../../styles/tokens' as t;
+
+.transaction-form {
+  display: grid;
+  gap: t.$space-1;
+  min-width: min(420px, 100%);
+  padding-top: 4px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+mat-dialog-actions {
+  padding: t.$space-2 t.$space-3 t.$space-3;
+}

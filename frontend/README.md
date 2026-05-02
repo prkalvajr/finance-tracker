@@ -1,59 +1,49 @@
-# Frontend
+# Personal Finance Tracker Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+Angular frontend for the Personal Finance Tracker. The app uses Angular Material, reactive forms, signals for local app state, and HttpOnly cookie authentication against the .NET backend.
 
-## Development server
+## Prerequisites
 
-To start a local development server, run:
+- Node.js and npm
+- The backend API running locally
+- PostgreSQL configured for the backend seed data
 
-```bash
-ng serve
-```
+The default API base URL is `http://localhost:5283`. Update `src/app/core/http/api-config.ts` if your backend runs on a different URL.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Setup
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open `http://localhost:4200/`.
+
+The backend must be running for login, register, profile, and transaction requests to work. Cookies are sent with `withCredentials: true`, so keep the frontend and backend CORS settings aligned.
+
+## Demo Credentials
+
+- Email: `demo@example.com`
+- Password: `demo1234`
+
+## Tests
 
 ```bash
-ng generate --help
+npm test
 ```
 
-## Building
+This project uses the Angular 21 unit-test builder with Vitest.
 
-To build the project run:
+## Manual Smoke Checklist
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Register a new user and confirm the app routes to Home.
+2. Logout and confirm the app routes to Login.
+3. Login as `demo@example.com` and confirm seeded transactions are visible.
+4. Filter by category and date range, sort by amount, and paginate.
+5. Add a transaction and confirm it appears in the grid and summary totals update.
+6. Edit a transaction and confirm the row updates.
+7. Delete a transaction after confirming, then retry delete and cancel to confirm it stays.
+8. Update profile name and confirm the toolbar reflects it.
+9. Change password with confirmation and confirm the next login uses the new password.
+10. Hard-refresh on `/home` and confirm the bootstrap probe keeps the session.
+11. Wait for the 15-minute access token to expire, then make a request and confirm silent refresh succeeds.

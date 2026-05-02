@@ -37,3 +37,12 @@ body {
   --mdc-snackbar-supporting-text-color: #{$color-white};
   --mat-snack-bar-button-color: #{$color-white};
 }
+
+.toast-success,
+.toast-error,
+.toast-info {
+  .mdc-snackbar__surface {
+    border-radius: $radius-sm;
+    box-shadow: $shadow-md;
+  }
+}

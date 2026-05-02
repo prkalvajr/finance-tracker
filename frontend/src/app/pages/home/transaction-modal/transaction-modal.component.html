@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit transaction' : 'Add transaction' }}</h2>
+
+<mat-dialog-content>
+  <form class="transaction-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="title" autocomplete="off" />
+      @if (form.controls.title.touched && form.controls.title.errors) {
+        @if (form.controls.title.errors['required']) {
+          <mat-error>Title is required.</mat-error>
+        } @else if (form.controls.title.errors['maxlength']) {
+          <mat-error>Title must be 200 characters or fewer.</mat-error>
+        } @else if (form.controls.title.errors['server']) {
+          <mat-error>{{ form.controls.title.errors['server'] }}</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" min="0.01" step="0.01" formControlName="amount" />
+      @if (form.controls.amount.touched && form.controls.amount.errors) {
+        @if (form.controls.amount.errors['required']) {
+          <mat-error>Amount is required.</mat-error>
+        } @else if (form.controls.amount.errors['min']) {
+          <mat-error>Amount must be greater than zero.</mat-error>
+        } @else if (form.controls.amount.errors['server']) {
+          <mat-error>{{ form.controls.amount.errors['server'] }}</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option value="income">Income</mat-option>
+        <mat-option value="expense">Expense</mat-option>
+      </mat-select>
+      @if (form.controls.category.touched && form.controls.category.errors) {
+        @if (form.controls.category.errors['required']) {
+          <mat-error>Category is required.</mat-error>
+        } @else if (form.controls.category.errors['server']) {
+          <mat-error>{{ form.controls.category.errors['server'] }}</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="date" />
+      @if (form.controls.date.touched && form.controls.date.errors?.['server']) {
+        <mat-error>{{ form.controls.date.errors?.['server'] }}</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close [disabled]="submitting()">Cancel</button>
+  <button mat-flat-button color="primary" type="button" [disabled]="submitting()" (click)="submit()">
+    {{ submitting() ? (isEditMode ? 'Saving...' : 'Adding...') : (isEditMode ? 'Save' : 'Add') }}
+  </button>
+</mat-dialog-actions>
