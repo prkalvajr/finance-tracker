@@ -255,7 +255,7 @@
 
 ---
 
-## Phase 7 — API: AuthController ⬜
+## Phase 7 — API: AuthController ✅
 
 **Goal:** Implement the four auth endpoints and the middleware they depend on.
 
@@ -273,14 +273,14 @@
 
 | # | Test | Status |
 |---|---|---|
-| 1 | `Register_WithValidData_Returns201AndSetsCookies` | ⬜ |
-| 2 | `Register_WithDuplicateEmail_Returns409` | ⬜ |
-| 3 | `Register_WithMissingFields_Returns400` | ⬜ |
-| 4 | `Login_WithValidCredentials_Returns200AndSetsCookies` | ⬜ |
-| 5 | `Login_WithBadCredentials_Returns401` | ⬜ |
-| 6 | `Refresh_WithValidCookie_Returns200AndRotatesCookies` | ⬜ |
-| 7 | `Refresh_WithMissingCookie_Returns401` | ⬜ |
-| 8 | `Logout_WithValidCookie_Returns200AndClearsCookies` | ⬜ |
+| 1 | `Register_WithValidData_Returns201AndSetsCookies` | ✅ |
+| 2 | `Register_WithDuplicateEmail_Returns409` | ✅ |
+| 3 | `Register_WithMissingFields_Returns400` | ✅ |
+| 4 | `Login_WithValidCredentials_Returns200AndSetsCookies` | ✅ |
+| 5 | `Login_WithBadCredentials_Returns401` | ✅ |
+| 6 | `Refresh_WithValidCookie_Returns200AndRotatesCookies` | ✅ |
+| 7 | `Refresh_WithMissingCookie_Returns401` | ✅ |
+| 8 | `Logout_WithValidCookie_Returns200AndClearsCookies` | ✅ |
 
 **Checkpoint:** 8 tests pass. Auth endpoints and middleware covered.
 
@@ -364,7 +364,7 @@
 | 4 | Application: TransactionService (17 tests) | ✅ |
 | 5 | Infrastructure: PasswordHasher + JwtService (8 tests) | ✅ |
 | 6 | Infrastructure: Repositories (23 tests) | ✅ |
-| 7 | API: AuthController + middleware (8 tests) | ⬜ |
+| 7 | API: AuthController + middleware (8 tests) | ✅ |
 | 8 | API: UserController (5 tests) | ⬜ |
 | 9 | API: TransactionController (14 tests) | ⬜ |
 | 10 | DI wiring + Program.cs | ⬜ |

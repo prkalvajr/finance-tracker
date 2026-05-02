@@ -1,3 +1,5 @@
+using FinanceTracker.Api.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -12,8 +14,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<CookieTokenMiddleware>();
+
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
