@@ -25,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 
 import { GridComponent } from '../../shared/components/grid/grid.component';
-import { GridColumn, GridFetcher, GridQuery } from '../../shared/components/grid/grid.types';
+import { GridColumn, GridLoader, GridQuery } from '../../shared/components/grid/grid.types';
 import { TransactionsService } from '../../core/services/transactions.service';
 import { ConfirmationService } from '../../shared/services/confirmation.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -110,6 +110,9 @@ export class HomePageComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
 
   readonly summary = this.txService.summary;
+  readonly transactions = this.txService.transactions;
+  readonly totalCount = this.txService.totalCount;
+  readonly loading = this.txService.loading;
   readonly formatCurrency = formatCurrency;
 
   readonly filterForm = this.fb.nonNullable.group({
@@ -129,8 +132,8 @@ export class HomePageComponent implements OnInit {
   private readonly actionsTpl = viewChild.required<TemplateRef<{ $implicit: TransactionDto }>>('actionsTpl');
   readonly grid = viewChild.required<GridComponent<TransactionDto>>(GridComponent);
 
-  readonly fetch: GridFetcher<TransactionDto> = async (query: GridQuery) => {
-    const result = await this.txService.getPaged({
+  readonly load: GridLoader = async (query: GridQuery) => {
+    await this.txService.getPaged({
       page: query.page,
       pageSize: query.pageSize,
       sortBy: query.sortBy,
@@ -140,7 +143,6 @@ export class HomePageComponent implements OnInit {
       dateTo: (query.filters['dateTo'] as string) || null
     });
     await this.txService.getSummary();
-    return { items: result.items, totalCount: result.totalCount };
   };
 
   constructor() {

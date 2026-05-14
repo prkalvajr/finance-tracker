@@ -33,7 +33,13 @@
       </button>
     </div>
 
-    <app-grid [columns]="columns()" [fetch]="fetch" [pageSize]="10">
+    <app-grid
+      [columns]="columns()"
+      [load]="load"
+      [rows]="transactions()"
+      [totalCount]="totalCount()"
+      [loading]="loading()"
+      [pageSize]="10">
 
       <!-- Filter bar projected into the grid's filter slot -->
       <div gridFilters class="filter-bar" [formGroup]="filterForm">

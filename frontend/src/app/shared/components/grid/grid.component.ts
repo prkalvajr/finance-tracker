@@ -1,12 +1,9 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnInit,
   computed,
-  inject,
-  input,
-  signal
+  input
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -14,7 +11,7 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { GridColumn, GridFetcher, GridQuery } from './grid.types';
+import { GridColumn, GridLoader, GridQuery } from './grid.types';
 
 @Component({
   selector: 'app-grid',
@@ -32,15 +29,11 @@ import { GridColumn, GridFetcher, GridQuery } from './grid.types';
 })
 export class GridComponent<T> implements OnInit {
   readonly columns = input.required<GridColumn<T>[]>();
-  readonly fetch = input.required<GridFetcher<T>>();
+  readonly load = input.required<GridLoader>();
+  readonly rows = input.required<T[]>();
+  readonly totalCount = input.required<number>();
+  readonly loading = input(false);
   readonly pageSize = input(10);
-
-  private readonly cdr = inject(ChangeDetectorRef);
-
-  readonly rows = signal<T[]>([]);
-  readonly totalCount = signal(0);
-  readonly loading = signal(false);
-  readonly errorOccurred = signal(false);
 
   readonly columnKeys = computed(() => this.columns().map(c => c.key));
 
@@ -52,7 +45,7 @@ export class GridComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this._pageSize = this.pageSize();
-    this.loadData();
+    this.triggerLoad();
   }
 
   onSortChange(sort: Sort): void {
@@ -64,7 +57,7 @@ export class GridComponent<T> implements OnInit {
       this._sortOrder = undefined;
     }
     this._page = 1;
-    this.loadData();
+    this.triggerLoad();
   }
 
   onPageChange(event: PageEvent): void {
@@ -74,27 +67,24 @@ export class GridComponent<T> implements OnInit {
     } else {
       this._page = event.pageIndex + 1;
     }
-    this.loadData();
+    this.triggerLoad();
   }
 
   applyFilters(filters: Record<string, unknown>): void {
     this._filters = filters;
     this._page = 1;
-    this.loadData();
+    this.triggerLoad();
   }
 
   refresh(): void {
-    this.loadData();
+    this.triggerLoad();
   }
 
   getCell(col: GridColumn<T>, row: T): string {
     return col.cell ? col.cell(row) : String((row as Record<string, unknown>)[col.key] ?? '');
   }
 
-  private async loadData(): Promise<void> {
-    this.loading.set(true);
-    this.errorOccurred.set(false);
-
+  private triggerLoad(): void {
     const query: GridQuery = {
       page: this._page,
       pageSize: this._pageSize,
@@ -102,17 +92,6 @@ export class GridComponent<T> implements OnInit {
       sortOrder: this._sortOrder,
       filters: this._filters
     };
-
-    try {
-      const result = await this.fetch()(query);
-      this.rows.set(result.items);
-      this.totalCount.set(result.totalCount);
-    } catch {
-      this.rows.set([]);
-      this.errorOccurred.set(true);
-    } finally {
-      this.loading.set(false);
-      this.cdr.markForCheck();
-    }
+    void this.load()(query);
   }
 }

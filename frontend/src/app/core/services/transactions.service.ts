@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import {
@@ -18,8 +18,11 @@ export class TransactionsService {
   private readonly apiBase = inject(API_BASE_URL);
 
   readonly transactions = signal<TransactionDto[]>([]);
+  readonly totalCount = signal(0);
   readonly summary = signal<TransactionSummaryDto | null>(null);
   readonly loading = signal(false);
+
+  readonly isEmpty = computed(() => this.transactions().length === 0);
 
   async getPaged(query: TransactionQueryParams): Promise<PagedResult<TransactionDto>> {
     this.loading.set(true);
@@ -40,6 +43,7 @@ export class TransactionsService {
         })
       );
       this.transactions.set(result.items);
+      this.totalCount.set(result.totalCount);
       return result;
     } finally {
       this.loading.set(false);

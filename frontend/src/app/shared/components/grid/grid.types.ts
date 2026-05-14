@@ -17,3 +17,5 @@ export interface GridQuery {
 }
 
 export type GridFetcher<T> = (query: GridQuery) => Promise<{ items: T[]; totalCount: number }>;
+
+export type GridLoader = (query: GridQuery) => void | Promise<void>;

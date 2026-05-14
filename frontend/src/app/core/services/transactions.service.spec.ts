@@ -69,6 +69,7 @@ describe('TransactionsService', () => {
     const result = await promise;
     expect(result).toEqual(paged);
     expect(service.transactions()).toEqual(paged.items);
+    expect(service.totalCount()).toBe(paged.totalCount);
   });
 
   it('2: getSummary() calls GET /transactions/summary and updates summary signal', async () => {
