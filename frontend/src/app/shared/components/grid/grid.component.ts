@@ -2,9 +2,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input,
   OnInit,
+  computed,
   inject,
+  input,
   signal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -30,9 +31,9 @@ import { GridColumn, GridFetcher, GridQuery } from './grid.types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent<T> implements OnInit {
-  @Input({ required: true }) columns: GridColumn<T>[] = [];
-  @Input({ required: true }) fetch!: GridFetcher<T>;
-  @Input() pageSize = 10;
+  readonly columns = input.required<GridColumn<T>[]>();
+  readonly fetch = input.required<GridFetcher<T>>();
+  readonly pageSize = input(10);
 
   private readonly cdr = inject(ChangeDetectorRef);
 
@@ -41,18 +42,16 @@ export class GridComponent<T> implements OnInit {
   readonly loading = signal(false);
   readonly errorOccurred = signal(false);
 
+  readonly columnKeys = computed(() => this.columns().map(c => c.key));
+
   private _page = 1;
   _pageSize = 10;
   private _sortBy: string | undefined;
   private _sortOrder: 'asc' | 'desc' | undefined;
   private _filters: Record<string, unknown> = {};
 
-  get columnKeys(): string[] {
-    return this.columns.map(c => c.key);
-  }
-
   ngOnInit(): void {
-    this._pageSize = this.pageSize;
+    this._pageSize = this.pageSize();
     this.loadData();
   }
 
@@ -105,7 +104,7 @@ export class GridComponent<T> implements OnInit {
     };
 
     try {
-      const result = await this.fetch(query);
+      const result = await this.fetch()(query);
       this.rows.set(result.items);
       this.totalCount.set(result.totalCount);
     } catch {

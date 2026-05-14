@@ -1,7 +1,6 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { TemplateRef } from '@angular/core';
+import { describe, expect, it, vi } from 'vitest';
 
 import { GridComponent } from './grid.component';
 import { GridColumn, GridQuery } from './grid.types';
@@ -32,9 +31,9 @@ async function createComponent(
   }).compileComponents();
 
   const fixture: ComponentFixture<GridComponent<Row>> = TestBed.createComponent(GridComponent<Row>);
-  fixture.componentInstance.columns = columns;
-  fixture.componentInstance.fetch = fetch;
-  fixture.componentInstance.pageSize = pageSize;
+  fixture.componentRef.setInput('columns', columns);
+  fixture.componentRef.setInput('fetch', fetch);
+  fixture.componentRef.setInput('pageSize', pageSize);
   fixture.detectChanges();
   // Wait for the initial async fetch
   await fixture.whenStable();
@@ -145,6 +144,6 @@ describe('GridComponent', () => {
     ];
     const { component } = await createComponent(columns);
 
-    expect(component.columns[0].sortable).toBe(false);
+    expect(component.columns()[0].sortable).toBe(false);
   });
 });

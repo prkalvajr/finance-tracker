@@ -11,7 +11,7 @@
     }
 
     <table mat-table [dataSource]="rows()" matSort (matSortChange)="onSortChange($event)">
-      @for (col of columns; track col.key) {
+      @for (col of columns(); track col.key) {
         <ng-container [matColumnDef]="col.key">
           <th mat-header-cell *matHeaderCellDef [mat-sort-header]="col.sortable ? col.key : ''" [disabled]="!col.sortable">
             {{ col.label }}
@@ -26,11 +26,11 @@
         </ng-container>
       }
 
-      <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnKeys"></tr>
+      <tr mat-header-row *matHeaderRowDef="columnKeys()"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnKeys()"></tr>
 
       <tr class="mat-row grid-empty-row" *matNoDataRow>
-        <td [colSpan]="columnKeys.length" class="grid-empty-cell">
+        <td [colSpan]="columnKeys().length" class="grid-empty-cell">
           No transactions yet - add your first one.
         </td>
       </tr>

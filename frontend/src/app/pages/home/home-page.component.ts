@@ -3,10 +3,10 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewChild,
   afterNextRender,
   inject,
-  signal
+  signal,
+  viewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -126,8 +126,8 @@ export class HomePageComponent implements OnInit {
     { key: 'actions',  label: '',         sortable: false }
   ]);
 
-  @ViewChild('actionsTpl') private actionsTpl!: TemplateRef<{ $implicit: TransactionDto }>;
-  @ViewChild(GridComponent) grid!: GridComponent<TransactionDto>;
+  private readonly actionsTpl = viewChild.required<TemplateRef<{ $implicit: TransactionDto }>>('actionsTpl');
+  readonly grid = viewChild.required<GridComponent<TransactionDto>>(GridComponent);
 
   readonly fetch: GridFetcher<TransactionDto> = async (query: GridQuery) => {
     const result = await this.txService.getPaged({
@@ -145,8 +145,9 @@ export class HomePageComponent implements OnInit {
 
   constructor() {
     afterNextRender(() => {
+      const tpl = this.actionsTpl();
       this.columns.update(cols =>
-        cols.map(c => c.key === 'actions' ? { ...c, template: this.actionsTpl } : c)
+        cols.map(c => c.key === 'actions' ? { ...c, template: tpl } : c)
       );
     });
   }
@@ -162,7 +163,7 @@ export class HomePageComponent implements OnInit {
     }
 
     const { category, dateFrom, dateTo } = this.filterForm.getRawValue();
-    this.grid.applyFilters({
+    this.grid().applyFilters({
       category: category || null,
       dateFrom: dateFrom || null,
       dateTo: dateTo || null
@@ -171,7 +172,7 @@ export class HomePageComponent implements OnInit {
 
   clearFilters(): void {
     this.filterForm.reset();
-    this.grid.applyFilters({});
+    this.grid().applyFilters({});
   }
 
   async deleteTransaction(row: TransactionDto): Promise<void> {
@@ -184,7 +185,7 @@ export class HomePageComponent implements OnInit {
     if (!confirmed) return;
 
     await this.txService.delete(row.transactionId);
-    this.grid.refresh();
+    this.grid().refresh();
     this.notification.success('Transaction deleted.');
   }
 
@@ -209,7 +210,7 @@ export class HomePageComponent implements OnInit {
 
     ref.afterClosed().subscribe(async saved => {
       if (!saved) return;
-      this.grid.refresh();
+      this.grid().refresh();
     });
   }
 }
